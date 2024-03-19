@@ -7,6 +7,7 @@ import { backendUrl } from '../config';
 
 const DashBoard = (props) => {
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(true); // State variable for loading indicator
     const [username, setUsername] = useState('');
     const [notes, setNotes] = useState([]);
     const [updateNoteId, setUpdateNoteId] = useState(null);
@@ -24,15 +25,19 @@ const DashBoard = (props) => {
             setNotes(response.data.notes);
         } catch (error) {
             console.log(error);
+        } finally {
+            setLoading(false); // Set loading to false once data is fetched or on error
         }
     };
 
     useEffect(() => {
-        if (props.loggedIn === false) {
-            navigate('/login');
+        const token = localStorage.getItem('token');
+        if (!token) {
+            // If token does not exist, navigate to login page
+            navigate('/STK_Notes_Frontend/login');
+        } else {
+            fetchData(); // Fetch data only if user is logged in
         }
-
-        fetchData();
     }, []);
 
     const handleDelete = async (id) => {
@@ -51,12 +56,10 @@ const DashBoard = (props) => {
     }
 
     const handleUpdate = (noteId) => {
-        // Set the updateNoteId to the selected note's ID
         setUpdateNoteId(noteId);
     };
 
     const handleUpdateNoteClose = () => {
-        // Reset the updateNoteId when the update note window is closed
         setUpdateNoteId(null);
     };
 
@@ -68,31 +71,34 @@ const DashBoard = (props) => {
                     <h2>Hey, {username}</h2>
                 </div>
                 <div>
-                    <Link to="/newnote"><button className='btn'>+ New Note</button></Link>
+                    <Link to="/STK_Notes_Frontend/newnote"><button className='btn'>+ New Note</button></Link>
                 </div>
             </div>
-            <div className='userNotes'>
-                {notes && notes.length === 0 ? (
-                    <h2>No notes available. Create a new note.</h2>
-                ) : (
-                    notes.map(note => (
-                        <Note
-                            key={note._id}
-                            title={note.title}
-                            content={note.content}
-                            onDelete={() => handleDelete(note._id)}
-                            onEdit={() => handleUpdate(note._id)}
-                        />
-                    ))
-                )}
+            {loading ? ( // Render loading indicator if loading is true
+                <h2>Loading...</h2>
+            ) : (
+                <div className='userNotes'>
+                    {notes && notes.length === 0 ? (
+                        <h2>No notes available. Create a new note.</h2>
+                    ) : (
+                        notes.map(note => (
+                            <Note
+                                key={note._id}
+                                title={note.title}
+                                content={note.content}
+                                onDelete={() => handleDelete(note._id)}
+                                onEdit={() => handleUpdate(note._id)}
+                            />
+                        ))
+                    )}
+                </div>
+            )}
 
-            </div>
-            {/* Render the UpdateNote component when updateNoteId is set */}
             {updateNoteId && (
                 <UpdateNote
                     noteId={updateNoteId}
                     onClose={handleUpdateNoteClose}
-                    onUpdate={fetchData} // Refetch the data after updating a note
+                    onUpdate={fetchData}
                 />
             )}
         </div>

@@ -31,7 +31,7 @@ const Signup = () => {
                 .then(res => {
                     console.log(res.data);
                     alert('Signup successful. You can now login.');
-                    navigate('/login');
+                    navigate('/STK_Notes_Frontend/login');
                 })
                 .catch(err => {
                     console.error(err);

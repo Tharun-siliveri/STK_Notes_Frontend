@@ -31,7 +31,7 @@ const Login = (props) => {
                 // Store the token in local storage
                 localStorage.setItem('token', token);
                 props.setLoggedIn(true);
-                navigate('/dashboard');
+                navigate('/STK_Notes_Frontend/dashboard');
             })
             .catch(err => {
                 console.error('Error:', err)

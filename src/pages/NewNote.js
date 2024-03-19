@@ -6,11 +6,15 @@ const NewNote = (props) => {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const navigate = useNavigate();
+
     useEffect(() => {
-        if (props.loggedIn === false) {
-            navigate('/login');
+        const token = localStorage.getItem('token');
+        if (!token) {
+            // If token does not exist, navigate to login page
+            navigate('/STK_Notes_Frontend/login');
         }
     }, []);
+
 
     const SubmitHandler = async (e) => {
         e.preventDefault();
@@ -27,7 +31,7 @@ const NewNote = (props) => {
                 console.log(data.message);
                 setTitle('');
                 setContent('');
-                navigate('/dashboard');
+                navigate('/STK_Notes_Frontend/dashboard');
             } else {
                 console.log(data.message);
             }
@@ -39,7 +43,7 @@ const NewNote = (props) => {
     return (
         <div className='newNote'>
             <div className='nNRow1'>
-                <Link to='/dashboard'><h3>DashBoard</h3></Link>
+                <Link to='/STK_Notes_Frontend/dashboard'><h3>DashBoard</h3></Link>
                 <span>/ New Note</span>
             </div>
             <h2 className='addNoteTag'>Add Note</h2>
