@@ -3,7 +3,7 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import DashBoard from './pages/DashBoard';
 import NewNote from './pages/NewNote';
-import { Routes, Route, Link, useLocation } from 'react-router-dom';
+import { Routes, Route, Link, useLocation, Navigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 function App() {
@@ -23,12 +23,6 @@ function App() {
     setLoggedIn(false);
   };
 
-  useEffect(() => {
-    if (location.pathname === "/STK_Notes_Frontend/") {
-      // Redirect to the home page when accessing the base URL
-      window.location.href = "/STK_Notes_Frontend/home";
-    }
-  }, [location]);
 
   return (
     <div className="App">
@@ -67,8 +61,8 @@ function App() {
       {/* main content */}
       <div className="main">
         <Routes>
-          <Route path="/STK_Notes_Frontend/" element={<Home />} />
-          <Route path="/STK_Notes_Frontend/home" element={<Home />} />
+          {/* <Route path="/STK_Notes_Frontend" element={<Navigate to="/STK_Notes_Frontend/home" replace />} /> */}
+          <Route path="/STK_Notes_Frontend" element={<Home />} />
           <Route path="/STK_Notes_Frontend/signup" element={<Signup />} />
           <Route path="/STK_Notes_Frontend/login" element={<Login setLoggedIn={setLoggedIn} />} />
           <Route path="/STK_Notes_Frontend/dashboard" element={<DashBoard loggedIn={loggedIn} />} />
