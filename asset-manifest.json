@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/STK_Notes_Frontend/static/css/main.94a880e3.css",
-    "main.js": "/STK_Notes_Frontend/static/js/main.63e16050.js",
+    "main.js": "/STK_Notes_Frontend/static/js/main.b6d8a002.js",
     "index.html": "/STK_Notes_Frontend/index.html",
     "main.94a880e3.css.map": "/STK_Notes_Frontend/static/css/main.94a880e3.css.map",
-    "main.63e16050.js.map": "/STK_Notes_Frontend/static/js/main.63e16050.js.map"
+    "main.b6d8a002.js.map": "/STK_Notes_Frontend/static/js/main.b6d8a002.js.map"
   },
   "entrypoints": [
     "static/css/main.94a880e3.css",
-    "static/js/main.63e16050.js"
+    "static/js/main.b6d8a002.js"
   ]
 }
