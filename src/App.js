@@ -68,6 +68,7 @@ function App() {
       <div className="main">
         <Routes>
           <Route path="/STK_Notes_Frontend/" element={<Home />} />
+          <Route path="/STK_Notes_Frontend/home" element={<Home />} />
           <Route path="/STK_Notes_Frontend/signup" element={<Signup />} />
           <Route path="/STK_Notes_Frontend/login" element={<Login setLoggedIn={setLoggedIn} />} />
           <Route path="/STK_Notes_Frontend/dashboard" element={<DashBoard loggedIn={loggedIn} />} />
