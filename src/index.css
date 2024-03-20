@@ -347,3 +347,11 @@ textarea {
     width: 0;
   }
 }
+
+
+.not-found {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 30px;
+  color: red;
+}

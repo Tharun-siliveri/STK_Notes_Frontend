@@ -3,12 +3,12 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import DashBoard from './pages/DashBoard';
 import NewNote from './pages/NewNote';
-import { Routes, Route, Link, useLocation, Navigate } from 'react-router-dom';
+import NotFound from './pages/NotFound';
+import { Routes, Route, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
-  const location = useLocation();
 
   useEffect(() => {
     // Check if user is already logged in (based on presence of token)
@@ -67,6 +67,7 @@ function App() {
           <Route path="/STK_Notes_Frontend/login" element={<Login setLoggedIn={setLoggedIn} />} />
           <Route path="/STK_Notes_Frontend/dashboard" element={<DashBoard loggedIn={loggedIn} />} />
           <Route path="/STK_Notes_Frontend/newnote" element={<NewNote loggedIn={loggedIn} />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
 
