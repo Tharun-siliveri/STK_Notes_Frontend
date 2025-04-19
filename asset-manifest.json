@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/STK_Notes_Frontend/static/css/main.4a7e6f5e.css",
+    "main.js": "/STK_Notes_Frontend/static/js/main.3251a1d1.js",
+    "index.html": "/STK_Notes_Frontend/index.html",
+    "main.4a7e6f5e.css.map": "/STK_Notes_Frontend/static/css/main.4a7e6f5e.css.map",
+    "main.3251a1d1.js.map": "/STK_Notes_Frontend/static/js/main.3251a1d1.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4a7e6f5e.css",
+    "static/js/main.3251a1d1.js"
+  ]
+}
