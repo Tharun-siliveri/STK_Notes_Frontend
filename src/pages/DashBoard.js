@@ -12,6 +12,44 @@ const DashBoard = (props) => {
     const [notes, setNotes] = useState([]);
     const [updateNoteId, setUpdateNoteId] = useState(null);
 
+    useEffect(() => {
+        const script = document.createElement('script');
+        script.src = "https://chatbot-widget-five.vercel.app/chatbot-widget/widget-sdk.js";
+        script.defer = true;
+        script.id = "chatbot-widget-script";
+        document.body.appendChild(script);
+      
+        const sendUserData = () => {
+          const iframe = document.getElementById("chatbot-iframe");
+          if (iframe && iframe.contentWindow) {
+            iframe.contentWindow.postMessage(
+              {
+                user: {
+                  name: username // 🔐 Secure user info
+                }
+              },
+              "https://chatbot-widget-five.vercel.app" // ✅ MUST match iframe origin
+            );
+          }
+        };
+      
+        const interval = setInterval(() => {
+          const iframe = document.getElementById("chatbot-iframe");
+          if (iframe && iframe.contentWindow) {
+            sendUserData();
+            clearInterval(interval);
+          }
+        }, 500); // retry until iframe is ready
+      
+        return () => {
+          document.getElementById("chatbot-widget-script")?.remove();
+          document.getElementById("chatbot-widget-btn")?.remove();
+          document.getElementById("chatbot-container")?.remove();
+          clearInterval(interval);
+        };
+      }, [username]); // ✅ re-run when username is available
+      
+
     const fetchData = async () => {
         try {
             const token = localStorage.getItem('token');
